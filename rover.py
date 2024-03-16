@@ -90,13 +90,20 @@ def main():
 \_| \_/\___|\__| \_/\_/ \___/|_|  |_|\_\ \_| \_\___/ \_/ \___|_|   
                                                                    ''')
     print('Built by github.com/austowe\n')
+    print('Current settings:')
+    print(f' - Ping timeout: {parameters.ping_timeout}')
+    print(f' - Port timeout: {parameters.port_timeout}')
+    print(f' - Output to CSV: {parameters.output_to_csv}')
+    print(f' - Verbose Output: {parameters.verbose_output}\n')
+
+
     #build scan range based on selection
     print("Select scanning mode:")
     print("1. Last two octets")
     print("2. Last octet")
     print("3. Manual specification")
 
-    mode_choice = input("Enter the mode number: ")
+    mode_choice = input("\nEnter the mode number: ")
 
     if mode_choice == '1':
         network_address = f"{local_ip.split('.')[0]}.{local_ip.split('.')[1]}.0.0/16"
