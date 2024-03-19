@@ -55,15 +55,26 @@ def scan_network(network, target_ports, verbose_output):
                     print(f"{ip} is alive.")
                 live_hosts.append(ip)
                 port_dict[ip] = []
+                counter = 1
                 for port in target_ports:
                     if verbose_output:
-                        sys.stdout.write('\r' + f"Scanning port {port}...   ")
+                        percentage = counter / len(target_ports) * 20
+                        message = "["
+                        print_percentage = 0
+                        while print_percentage < percentage:
+                            message += "="
+                            print_percentage += 1
+                        while len(message) < 21:
+                            message += " "
+                        message += "]"
+                        sys.stdout.write('\r' + message + f" {port} ")
                     if is_port_open(ip, port):
                         sys.stdout.write('\r' + f"Port {port} open              \n")
                         open_ports.append(f"{ip}:{port}")
                         port_dict[ip].append(port)
+                    counter += 1
                 if verbose_output:
-                    sys.stdout.write("\rDone                   \n")
+                    sys.stdout.write("\r[====================] Done  \n")
             else:
                 cont = True
 
